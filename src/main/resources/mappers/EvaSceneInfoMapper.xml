@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dmx.evaluationplatform.model.dao.evaSceneInfoMapper">
-  <resultMap id="BaseResultMap" type="com.dmx.evaluationplatform.model.pojo.evaSceneInfo">
+<mapper namespace="com.dmx.evaluationplatform.model.dao.EvaSceneInfoMapper">
+  <resultMap id="BaseResultMap" type="com.dmx.evaluationplatform.model.pojo.EvaSceneInfo">
     <id column="scene_id" jdbcType="BIGINT" property="sceneId" />
     <result column="scene_name" jdbcType="VARCHAR" property="sceneName" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
@@ -23,7 +23,7 @@
     delete from eva_scene_info
     where scene_id = #{sceneId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.dmx.evaluationplatform.model.pojo.evaSceneInfo">
+  <insert id="insert" parameterType="com.dmx.evaluationplatform.model.pojo.EvaSceneInfo">
     insert into eva_scene_info (scene_id, scene_name, start_time, 
       end_time, create_by, update_time, 
       is_delete)
@@ -31,7 +31,7 @@
       #{endTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{isDelete,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.dmx.evaluationplatform.model.pojo.evaSceneInfo">
+  <insert id="insertSelective" parameterType="com.dmx.evaluationplatform.model.pojo.EvaSceneInfo">
     insert into eva_scene_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="sceneId != null">
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dmx.evaluationplatform.model.pojo.evaSceneInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dmx.evaluationplatform.model.pojo.EvaSceneInfo">
     update eva_scene_info
     <set>
       <if test="sceneName != null">
@@ -104,7 +104,7 @@
     </set>
     where scene_id = #{sceneId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.dmx.evaluationplatform.model.pojo.evaSceneInfo">
+  <update id="updateByPrimaryKey" parameterType="com.dmx.evaluationplatform.model.pojo.EvaSceneInfo">
     update eva_scene_info
     set scene_name = #{sceneName,jdbcType=VARCHAR},
       start_time = #{startTime,jdbcType=TIMESTAMP},

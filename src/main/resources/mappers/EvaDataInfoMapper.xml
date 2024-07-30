@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dmx.evaluationplatform.model.dao.evaDataInfoMapper">
-  <resultMap id="BaseResultMap" type="com.dmx.evaluationplatform.model.pojo.evaDataInfo">
+<mapper namespace="com.dmx.evaluationplatform.model.dao.EvaDataInfoMapper">
+  <resultMap id="BaseResultMap" type="com.dmx.evaluationplatform.model.pojo.EvaDataInfo">
     <id column="eva_data_id" jdbcType="BIGINT" property="evaDataId" />
     <result column="data_name" jdbcType="VARCHAR" property="dataName" />
     <result column="slice_num" jdbcType="INTEGER" property="sliceNum" />
@@ -21,7 +21,7 @@
     <result column="page" jdbcType="INTEGER" property="page" />
     <result column="page_size" jdbcType="INTEGER" property="pageSize" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.dmx.evaluationplatform.model.pojo.evaDataInfo">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.dmx.evaluationplatform.model.pojo.EvaDataInfo">
     <result column="data_paths" jdbcType="LONGVARCHAR" property="dataPaths" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -44,7 +44,7 @@
     delete from eva_data_info
     where eva_data_id = #{evaDataId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.dmx.evaluationplatform.model.pojo.evaDataInfo">
+  <insert id="insert" parameterType="com.dmx.evaluationplatform.model.pojo.EvaDataInfo">
     insert into eva_data_info (eva_data_id, data_name, slice_num, 
       business, product, create_by, 
       create_time, update_by, update_time, 
@@ -60,7 +60,7 @@
       #{startIndex,jdbcType=INTEGER}, #{page,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}, 
       #{dataPaths,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dmx.evaluationplatform.model.pojo.evaDataInfo">
+  <insert id="insertSelective" parameterType="com.dmx.evaluationplatform.model.pojo.EvaDataInfo">
     insert into eva_data_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="evaDataId != null">
@@ -181,7 +181,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dmx.evaluationplatform.model.pojo.evaDataInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dmx.evaluationplatform.model.pojo.EvaDataInfo">
     update eva_data_info
     <set>
       <if test="dataName != null">
@@ -241,7 +241,7 @@
     </set>
     where eva_data_id = #{evaDataId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dmx.evaluationplatform.model.pojo.evaDataInfo">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dmx.evaluationplatform.model.pojo.EvaDataInfo">
     update eva_data_info
     set data_name = #{dataName,jdbcType=VARCHAR},
       slice_num = #{sliceNum,jdbcType=INTEGER},
@@ -263,7 +263,7 @@
       data_paths = #{dataPaths,jdbcType=LONGVARCHAR}
     where eva_data_id = #{evaDataId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.dmx.evaluationplatform.model.pojo.evaDataInfo">
+  <update id="updateByPrimaryKey" parameterType="com.dmx.evaluationplatform.model.pojo.EvaDataInfo">
     update eva_data_info
     set data_name = #{dataName,jdbcType=VARCHAR},
       slice_num = #{sliceNum,jdbcType=INTEGER},

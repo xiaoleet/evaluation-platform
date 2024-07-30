@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dmx.evaluationplatform.model.dao.evaResultMapper">
-  <resultMap id="BaseResultMap" type="com.dmx.evaluationplatform.model.pojo.evaResult">
+<mapper namespace="com.dmx.evaluationplatform.model.dao.EvaResultMapper">
+  <resultMap id="BaseResultMap" type="com.dmx.evaluationplatform.model.pojo.EvaResult">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="scene_task_id" jdbcType="BIGINT" property="sceneTaskId" />
     <result column="result_id" jdbcType="CHAR" property="resultId" />
@@ -31,7 +31,7 @@
     delete from eva_result
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.dmx.evaluationplatform.model.pojo.evaResult">
+  <insert id="insert" parameterType="com.dmx.evaluationplatform.model.pojo.EvaResult">
     insert into eva_result (id, scene_task_id, result_id, 
       patrol_version, module_name, cn_module_name, 
       strategy_code, strategy_name, cn_strategy_name, 
@@ -43,7 +43,7 @@
       #{priority,jdbcType=TINYINT}, #{isStages,jdbcType=BIT}, #{hitVolume,jdbcType=DOUBLE}, 
       #{hitRate,jdbcType=DOUBLE}, #{topK,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.dmx.evaluationplatform.model.pojo.evaResult">
+  <insert id="insertSelective" parameterType="com.dmx.evaluationplatform.model.pojo.EvaResult">
     insert into eva_result
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -134,7 +134,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dmx.evaluationplatform.model.pojo.evaResult">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dmx.evaluationplatform.model.pojo.EvaResult">
     update eva_result
     <set>
       <if test="sceneTaskId != null">
@@ -179,7 +179,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.dmx.evaluationplatform.model.pojo.evaResult">
+  <update id="updateByPrimaryKey" parameterType="com.dmx.evaluationplatform.model.pojo.EvaResult">
     update eva_result
     set scene_task_id = #{sceneTaskId,jdbcType=BIGINT},
       result_id = #{resultId,jdbcType=CHAR},
