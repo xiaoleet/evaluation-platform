@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dmx.evaluationplatform.model.dao.evaSceneTaskInfoMapper">
+  <resultMap id="BaseResultMap" type="com.dmx.evaluationplatform.model.pojo.evaSceneTaskInfo">
+    <id column="scene_task_id" jdbcType="BIGINT" property="sceneTaskId" />
+    <result column="scene_id" jdbcType="BIGINT" property="sceneId" />
+    <result column="eva_data_id" jdbcType="BIGINT" property="evaDataId" />
+    <result column="metric_package_id" jdbcType="BIGINT" property="metricPackageId" />
+    <result column="result_id" jdbcType="CHAR" property="resultId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="status_description" jdbcType="VARCHAR" property="statusDescription" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="QPS" jdbcType="INTEGER" property="qps" />
+    <result column="host_a" jdbcType="VARCHAR" property="hostA" />
+    <result column="host_b" jdbcType="VARCHAR" property="hostB" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="execute_by" jdbcType="VARCHAR" property="executeBy" />
+    <result column="task_type" jdbcType="INTEGER" property="taskType" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    scene_task_id, scene_id, eva_data_id, metric_package_id, result_id, `status`, status_description, 
+    start_time, end_time, `label`, QPS, host_a, host_b, `count`, execute_by, task_type, 
+    create_by, create_time, update_by, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from eva_scene_task_info
+    where scene_task_id = #{sceneTaskId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from eva_scene_task_info
+    where scene_task_id = #{sceneTaskId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.dmx.evaluationplatform.model.pojo.evaSceneTaskInfo">
+    insert into eva_scene_task_info (scene_task_id, scene_id, eva_data_id, 
+      metric_package_id, result_id, `status`, 
+      status_description, start_time, end_time, 
+      `label`, QPS, host_a, 
+      host_b, `count`, execute_by, 
+      task_type, create_by, create_time, 
+      update_by, update_time)
+    values (#{sceneTaskId,jdbcType=BIGINT}, #{sceneId,jdbcType=BIGINT}, #{evaDataId,jdbcType=BIGINT}, 
+      #{metricPackageId,jdbcType=BIGINT}, #{resultId,jdbcType=CHAR}, #{status,jdbcType=INTEGER}, 
+      #{statusDescription,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{label,jdbcType=VARCHAR}, #{qps,jdbcType=INTEGER}, #{hostA,jdbcType=VARCHAR}, 
+      #{hostB,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, #{executeBy,jdbcType=VARCHAR}, 
+      #{taskType,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dmx.evaluationplatform.model.pojo.evaSceneTaskInfo">
+    insert into eva_scene_task_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sceneTaskId != null">
+        scene_task_id,
+      </if>
+      <if test="sceneId != null">
+        scene_id,
+      </if>
+      <if test="evaDataId != null">
+        eva_data_id,
+      </if>
+      <if test="metricPackageId != null">
+        metric_package_id,
+      </if>
+      <if test="resultId != null">
+        result_id,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="statusDescription != null">
+        status_description,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="label != null">
+        `label`,
+      </if>
+      <if test="qps != null">
+        QPS,
+      </if>
+      <if test="hostA != null">
+        host_a,
+      </if>
+      <if test="hostB != null">
+        host_b,
+      </if>
+      <if test="count != null">
+        `count`,
+      </if>
+      <if test="executeBy != null">
+        execute_by,
+      </if>
+      <if test="taskType != null">
+        task_type,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sceneTaskId != null">
+        #{sceneTaskId,jdbcType=BIGINT},
+      </if>
+      <if test="sceneId != null">
+        #{sceneId,jdbcType=BIGINT},
+      </if>
+      <if test="evaDataId != null">
+        #{evaDataId,jdbcType=BIGINT},
+      </if>
+      <if test="metricPackageId != null">
+        #{metricPackageId,jdbcType=BIGINT},
+      </if>
+      <if test="resultId != null">
+        #{resultId,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusDescription != null">
+        #{statusDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="qps != null">
+        #{qps,jdbcType=INTEGER},
+      </if>
+      <if test="hostA != null">
+        #{hostA,jdbcType=VARCHAR},
+      </if>
+      <if test="hostB != null">
+        #{hostB,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="executeBy != null">
+        #{executeBy,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dmx.evaluationplatform.model.pojo.evaSceneTaskInfo">
+    update eva_scene_task_info
+    <set>
+      <if test="sceneId != null">
+        scene_id = #{sceneId,jdbcType=BIGINT},
+      </if>
+      <if test="evaDataId != null">
+        eva_data_id = #{evaDataId,jdbcType=BIGINT},
+      </if>
+      <if test="metricPackageId != null">
+        metric_package_id = #{metricPackageId,jdbcType=BIGINT},
+      </if>
+      <if test="resultId != null">
+        result_id = #{resultId,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusDescription != null">
+        status_description = #{statusDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="label != null">
+        `label` = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="qps != null">
+        QPS = #{qps,jdbcType=INTEGER},
+      </if>
+      <if test="hostA != null">
+        host_a = #{hostA,jdbcType=VARCHAR},
+      </if>
+      <if test="hostB != null">
+        host_b = #{hostB,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        `count` = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="executeBy != null">
+        execute_by = #{executeBy,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        task_type = #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where scene_task_id = #{sceneTaskId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dmx.evaluationplatform.model.pojo.evaSceneTaskInfo">
+    update eva_scene_task_info
+    set scene_id = #{sceneId,jdbcType=BIGINT},
+      eva_data_id = #{evaDataId,jdbcType=BIGINT},
+      metric_package_id = #{metricPackageId,jdbcType=BIGINT},
+      result_id = #{resultId,jdbcType=CHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      status_description = #{statusDescription,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      `label` = #{label,jdbcType=VARCHAR},
+      QPS = #{qps,jdbcType=INTEGER},
+      host_a = #{hostA,jdbcType=VARCHAR},
+      host_b = #{hostB,jdbcType=VARCHAR},
+      `count` = #{count,jdbcType=INTEGER},
+      execute_by = #{executeBy,jdbcType=VARCHAR},
+      task_type = #{taskType,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where scene_task_id = #{sceneTaskId,jdbcType=BIGINT}
+  </update>
+</mapper>
