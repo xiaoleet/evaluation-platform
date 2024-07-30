@@ -71,59 +71,23 @@
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <table tableName="csv_info" domainObjectName="CsvInfo"
-               enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <table tableName="csv_info" domainObjectName="CsvInfo"></table>
 
-        <table tableName="eva_data_info" domainObjectName="EvaDataInfo"
-               enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <table tableName="eva_data_info" domainObjectName="EvaDataInfo"></table>
 
-        <table tableName="eva_metric_info" domainObjectName="EvaMetricInfo"
-               enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <table tableName="eva_metric_info" domainObjectName="EvaMetricInfo"></table>
 
-        <table tableName="eva_metric_package_info" domainObjectName="EvaMetricPackageInfo"
-               enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <table tableName="eva_metric_package_info" domainObjectName="EvaMetricPackageInfo"></table>
 
-        <table tableName="eva_metric_package_relation" domainObjectName="EvaMetricPackageRelation"
-               enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <table tableName="eva_metric_package_relation" domainObjectName="EvaMetricPackageRelation"></table>
 
-        <table tableName="eva_result" domainObjectName="EvaResult"
-               enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <table tableName="eva_result" domainObjectName="EvaResult"></table>
 
-        <table tableName="eva_scene_info" domainObjectName="EvaSceneInfo"
-               enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <table tableName="eva_scene_info" domainObjectName="EvaSceneInfo"></table>
 
-        <table tableName="eva_scene_task_info" domainObjectName="EvaSceneTaskInfo"
-               enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <table tableName="eva_scene_task_info" domainObjectName="EvaSceneTaskInfo"></table>
 
-        <table tableName="scene_config" domainObjectName="SceneConfig"
-               enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <table tableName="scene_config" domainObjectName="SceneConfig"></table>
 
     </context>
 </generatorConfiguration>
