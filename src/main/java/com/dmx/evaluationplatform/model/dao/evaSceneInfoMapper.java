@@ -1,17 +1,17 @@
 package com.dmx.evaluationplatform.model.dao;
 
-import com.dmx.evaluationplatform.model.pojo.evaSceneInfo;
+import com.dmx.evaluationplatform.model.pojo.EvaSceneInfo;
 
-public interface evaSceneInfoMapper {
+public interface EvaSceneInfoMapper {
     int deleteByPrimaryKey(Long sceneId);
 
-    int insert(evaSceneInfo record);
+    int insert(EvaSceneInfo record);
 
-    int insertSelective(evaSceneInfo record);
+    int insertSelective(EvaSceneInfo record);
 
-    evaSceneInfo selectByPrimaryKey(Long sceneId);
+    EvaSceneInfo selectByPrimaryKey(Long sceneId);
 
-    int updateByPrimaryKeySelective(evaSceneInfo record);
+    int updateByPrimaryKeySelective(EvaSceneInfo record);
 
-    int updateByPrimaryKey(evaSceneInfo record);
+    int updateByPrimaryKey(EvaSceneInfo record);
 }

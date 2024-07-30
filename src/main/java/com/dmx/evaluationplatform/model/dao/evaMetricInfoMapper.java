@@ -1,20 +1,20 @@
 package com.dmx.evaluationplatform.model.dao;
 
-import com.dmx.evaluationplatform.model.pojo.evaMetricInfo;
-import com.dmx.evaluationplatform.model.pojo.evaMetricInfoWithBLOBs;
+import com.dmx.evaluationplatform.model.pojo.EvaMetricInfo;
+import com.dmx.evaluationplatform.model.pojo.EvaMetricInfoWithBLOBs;
 
-public interface evaMetricInfoMapper {
+public interface EvaMetricInfoMapper {
     int deleteByPrimaryKey(Long evaMetricId);
 
-    int insert(evaMetricInfoWithBLOBs record);
+    int insert(EvaMetricInfoWithBLOBs record);
 
-    int insertSelective(evaMetricInfoWithBLOBs record);
+    int insertSelective(EvaMetricInfoWithBLOBs record);
 
-    evaMetricInfoWithBLOBs selectByPrimaryKey(Long evaMetricId);
+    EvaMetricInfoWithBLOBs selectByPrimaryKey(Long evaMetricId);
 
-    int updateByPrimaryKeySelective(evaMetricInfoWithBLOBs record);
+    int updateByPrimaryKeySelective(EvaMetricInfoWithBLOBs record);
 
-    int updateByPrimaryKeyWithBLOBs(evaMetricInfoWithBLOBs record);
+    int updateByPrimaryKeyWithBLOBs(EvaMetricInfoWithBLOBs record);
 
-    int updateByPrimaryKey(evaMetricInfo record);
+    int updateByPrimaryKey(EvaMetricInfo record);
 }

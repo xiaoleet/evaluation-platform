@@ -1,17 +1,17 @@
 package com.dmx.evaluationplatform.model.dao;
 
-import com.dmx.evaluationplatform.model.pojo.evaMetricPackageInfo;
+import com.dmx.evaluationplatform.model.pojo.EvaMetricPackageInfo;
 
-public interface evaMetricPackageInfoMapper {
+public interface EvaMetricPackageInfoMapper {
     int deleteByPrimaryKey(Long evaPackageId);
 
-    int insert(evaMetricPackageInfo record);
+    int insert(EvaMetricPackageInfo record);
 
-    int insertSelective(evaMetricPackageInfo record);
+    int insertSelective(EvaMetricPackageInfo record);
 
-    evaMetricPackageInfo selectByPrimaryKey(Long evaPackageId);
+    EvaMetricPackageInfo selectByPrimaryKey(Long evaPackageId);
 
-    int updateByPrimaryKeySelective(evaMetricPackageInfo record);
+    int updateByPrimaryKeySelective(EvaMetricPackageInfo record);
 
-    int updateByPrimaryKey(evaMetricPackageInfo record);
+    int updateByPrimaryKey(EvaMetricPackageInfo record);
 }

@@ -1,17 +1,17 @@
 package com.dmx.evaluationplatform.model.dao;
 
-import com.dmx.evaluationplatform.model.pojo.evaResult;
+import com.dmx.evaluationplatform.model.pojo.EvaResult;
 
-public interface evaResultMapper {
+public interface EvaResultMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(evaResult record);
+    int insert(EvaResult record);
 
-    int insertSelective(evaResult record);
+    int insertSelective(EvaResult record);
 
-    evaResult selectByPrimaryKey(Long id);
+    EvaResult selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(evaResult record);
+    int updateByPrimaryKeySelective(EvaResult record);
 
-    int updateByPrimaryKey(evaResult record);
+    int updateByPrimaryKey(EvaResult record);
 }

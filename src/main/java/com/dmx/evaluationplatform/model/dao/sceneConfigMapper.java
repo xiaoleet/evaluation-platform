@@ -1,19 +1,19 @@
 package com.dmx.evaluationplatform.model.dao;
 
-import com.dmx.evaluationplatform.model.pojo.sceneConfig;
+import com.dmx.evaluationplatform.model.pojo.SceneConfig;
 
-public interface sceneConfigMapper {
+public interface SceneConfigMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(sceneConfig record);
+    int insert(SceneConfig record);
 
-    int insertSelective(sceneConfig record);
+    int insertSelective(SceneConfig record);
 
-    sceneConfig selectByPrimaryKey(Long id);
+    SceneConfig selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(sceneConfig record);
+    int updateByPrimaryKeySelective(SceneConfig record);
 
-    int updateByPrimaryKeyWithBLOBs(sceneConfig record);
+    int updateByPrimaryKeyWithBLOBs(SceneConfig record);
 
-    int updateByPrimaryKey(sceneConfig record);
+    int updateByPrimaryKey(SceneConfig record);
 }

@@ -1,19 +1,19 @@
 package com.dmx.evaluationplatform.model.dao;
 
-import com.dmx.evaluationplatform.model.pojo.evaDataInfo;
+import com.dmx.evaluationplatform.model.pojo.EvaDataInfo;
 
-public interface evaDataInfoMapper {
+public interface EvaDataInfoMapper {
     int deleteByPrimaryKey(Long evaDataId);
 
-    int insert(evaDataInfo record);
+    int insert(EvaDataInfo record);
 
-    int insertSelective(evaDataInfo record);
+    int insertSelective(EvaDataInfo record);
 
-    evaDataInfo selectByPrimaryKey(Long evaDataId);
+    EvaDataInfo selectByPrimaryKey(Long evaDataId);
 
-    int updateByPrimaryKeySelective(evaDataInfo record);
+    int updateByPrimaryKeySelective(EvaDataInfo record);
 
-    int updateByPrimaryKeyWithBLOBs(evaDataInfo record);
+    int updateByPrimaryKeyWithBLOBs(EvaDataInfo record);
 
-    int updateByPrimaryKey(evaDataInfo record);
+    int updateByPrimaryKey(EvaDataInfo record);
 }

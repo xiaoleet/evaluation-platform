@@ -1,19 +1,19 @@
 package com.dmx.evaluationplatform.model.dao;
 
-import com.dmx.evaluationplatform.model.pojo.csvInfo;
+import com.dmx.evaluationplatform.model.pojo.CsvInfo;
 
-public interface csvInfoMapper {
+public interface CsvInfoMapper {
     int deleteByPrimaryKey(Long csvInfoId);
 
-    int insert(csvInfo record);
+    int insert(CsvInfo record);
 
-    int insertSelective(csvInfo record);
+    int insertSelective(CsvInfo record);
 
-    csvInfo selectByPrimaryKey(Long csvInfoId);
+    CsvInfo selectByPrimaryKey(Long csvInfoId);
 
-    int updateByPrimaryKeySelective(csvInfo record);
+    int updateByPrimaryKeySelective(CsvInfo record);
 
-    int updateByPrimaryKeyWithBLOBs(csvInfo record);
+    int updateByPrimaryKeyWithBLOBs(CsvInfo record);
 
-    int updateByPrimaryKey(csvInfo record);
+    int updateByPrimaryKey(CsvInfo record);
 }

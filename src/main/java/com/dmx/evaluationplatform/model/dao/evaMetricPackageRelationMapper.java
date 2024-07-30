@@ -1,11 +1,11 @@
 package com.dmx.evaluationplatform.model.dao;
 
-import com.dmx.evaluationplatform.model.pojo.evaMetricPackageRelationKey;
+import com.dmx.evaluationplatform.model.pojo.EvaMetricPackageRelationKey;
 
-public interface evaMetricPackageRelationMapper {
-    int deleteByPrimaryKey(evaMetricPackageRelationKey key);
+public interface EvaMetricPackageRelationMapper {
+    int deleteByPrimaryKey(EvaMetricPackageRelationKey key);
 
-    int insert(evaMetricPackageRelationKey record);
+    int insert(EvaMetricPackageRelationKey record);
 
-    int insertSelective(evaMetricPackageRelationKey record);
+    int insertSelective(EvaMetricPackageRelationKey record);
 }

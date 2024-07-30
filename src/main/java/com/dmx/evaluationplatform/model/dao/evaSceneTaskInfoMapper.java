@@ -1,17 +1,17 @@
 package com.dmx.evaluationplatform.model.dao;
 
-import com.dmx.evaluationplatform.model.pojo.evaSceneTaskInfo;
+import com.dmx.evaluationplatform.model.pojo.EvaSceneTaskInfo;
 
-public interface evaSceneTaskInfoMapper {
+public interface EvaSceneTaskInfoMapper {
     int deleteByPrimaryKey(Long sceneTaskId);
 
-    int insert(evaSceneTaskInfo record);
+    int insert(EvaSceneTaskInfo record);
 
-    int insertSelective(evaSceneTaskInfo record);
+    int insertSelective(EvaSceneTaskInfo record);
 
-    evaSceneTaskInfo selectByPrimaryKey(Long sceneTaskId);
+    EvaSceneTaskInfo selectByPrimaryKey(Long sceneTaskId);
 
-    int updateByPrimaryKeySelective(evaSceneTaskInfo record);
+    int updateByPrimaryKeySelective(EvaSceneTaskInfo record);
 
-    int updateByPrimaryKey(evaSceneTaskInfo record);
+    int updateByPrimaryKey(EvaSceneTaskInfo record);
 }
