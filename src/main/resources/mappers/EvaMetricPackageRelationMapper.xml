@@ -142,36 +142,4 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <resultMap id="BaseResultMap" type="com.dmx.evaluationplatform.model.pojo.EvaMetricPackageRelationKey">
-    <id column="eva_package_id" jdbcType="BIGINT" property="evaPackageId" />
-    <id column="eva_metric_id" jdbcType="BIGINT" property="evaMetricId" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricPackageRelationKey">
-    delete from eva_metric_package_relation
-    where eva_package_id = #{evaPackageId,jdbcType=BIGINT}
-      and eva_metric_id = #{evaMetricId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricPackageRelationKey">
-    insert into eva_metric_package_relation (eva_package_id, eva_metric_id)
-    values (#{evaPackageId,jdbcType=BIGINT}, #{evaMetricId,jdbcType=BIGINT})
-  </insert>
-  <insert id="insertSelective" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricPackageRelationKey">
-    insert into eva_metric_package_relation
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="evaPackageId != null">
-        eva_package_id,
-      </if>
-      <if test="evaMetricId != null">
-        eva_metric_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="evaPackageId != null">
-        #{evaPackageId,jdbcType=BIGINT},
-      </if>
-      <if test="evaMetricId != null">
-        #{evaMetricId,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
 </mapper>
