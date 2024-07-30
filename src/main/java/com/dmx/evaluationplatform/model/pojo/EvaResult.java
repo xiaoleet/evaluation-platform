@@ -1,6 +1,6 @@
 package com.dmx.evaluationplatform.model.pojo;
 
-public class evaResult {
+public class EvaResult {
     private Long id;
 
     private Long sceneTaskId;

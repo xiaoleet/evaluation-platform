@@ -2,7 +2,7 @@ package com.dmx.evaluationplatform.model.pojo;
 
 import java.util.Date;
 
-public class sceneConfig {
+public class SceneConfig {
     private Long id;
 
     private Long sceneId;

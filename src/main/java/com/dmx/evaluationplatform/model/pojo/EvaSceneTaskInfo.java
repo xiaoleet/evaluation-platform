@@ -2,7 +2,7 @@ package com.dmx.evaluationplatform.model.pojo;
 
 import java.util.Date;
 
-public class evaSceneTaskInfo {
+public class EvaSceneTaskInfo {
     private Long sceneTaskId;
 
     private Long sceneId;

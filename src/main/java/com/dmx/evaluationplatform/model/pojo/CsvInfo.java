@@ -2,7 +2,7 @@ package com.dmx.evaluationplatform.model.pojo;
 
 import java.util.Date;
 
-public class csvInfo {
+public class CsvInfo {
     private Long csvInfoId;
 
     private Long evaDataId;

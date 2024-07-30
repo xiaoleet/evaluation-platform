@@ -2,7 +2,7 @@ package com.dmx.evaluationplatform.model.pojo;
 
 import java.util.Date;
 
-public class evaSceneInfo {
+public class EvaSceneInfo {
     private Long sceneId;
 
     private String sceneName;

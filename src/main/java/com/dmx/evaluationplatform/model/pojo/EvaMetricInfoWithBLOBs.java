@@ -1,6 +1,6 @@
 package com.dmx.evaluationplatform.model.pojo;
 
-public class evaMetricInfoWithBLOBs extends evaMetricInfo {
+public class EvaMetricInfoWithBLOBs extends EvaMetricInfo {
     private String description;
 
     private String pattern;

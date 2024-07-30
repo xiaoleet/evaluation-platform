@@ -1,6 +1,6 @@
 package com.dmx.evaluationplatform.model.pojo;
 
-public class evaMetricPackageRelationKey {
+public class EvaMetricPackageRelationKey {
     private Long evaPackageId;
 
     private Long evaMetricId;

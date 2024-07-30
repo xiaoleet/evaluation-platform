@@ -2,7 +2,7 @@ package com.dmx.evaluationplatform.model.pojo;
 
 import java.util.Date;
 
-public class evaMetricInfo {
+public class EvaMetricInfo {
     private Long evaMetricId;
 
     private String busniess;

@@ -2,7 +2,7 @@ package com.dmx.evaluationplatform.model.pojo;
 
 import java.util.Date;
 
-public class evaDataInfo {
+public class EvaDataInfo {
     private Long evaDataId;
 
     private String dataName;
