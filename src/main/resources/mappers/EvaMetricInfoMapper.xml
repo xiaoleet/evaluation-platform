@@ -24,6 +24,499 @@
     <result column="pattern" jdbcType="LONGVARCHAR" property="pattern" />
     <result column="cacl_description" jdbcType="LONGVARCHAR" property="caclDescription" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    eva_metric_id, busniess, product, interface_eva, `module`, eva_id, eva_name, metric_type, 
+    priority, category_1, category_2, threadhold, create_by, create_time, update_by, 
+    update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    description, pattern, cacl_description
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricInfoExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from eva_metric_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from eva_metric_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from eva_metric_info
+    where eva_metric_id = #{evaMetricId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from eva_metric_info
+    where eva_metric_id = #{evaMetricId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricInfoExample">
+    delete from eva_metric_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricInfoWithBLOBs">
+    insert into eva_metric_info (eva_metric_id, busniess, product, 
+      interface_eva, `module`, eva_id, 
+      eva_name, metric_type, priority, 
+      category_1, category_2, threadhold, 
+      create_by, create_time, update_by, 
+      update_time, description, pattern, 
+      cacl_description)
+    values (#{evaMetricId,jdbcType=BIGINT}, #{busniess,jdbcType=VARCHAR}, #{product,jdbcType=VARCHAR}, 
+      #{interfaceEva,jdbcType=VARCHAR}, #{module,jdbcType=VARCHAR}, #{evaId,jdbcType=VARCHAR}, 
+      #{evaName,jdbcType=VARCHAR}, #{metricType,jdbcType=INTEGER}, #{priority,jdbcType=INTEGER}, 
+      #{category1,jdbcType=VARCHAR}, #{category2,jdbcType=VARCHAR}, #{threadhold,jdbcType=DOUBLE}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}, #{pattern,jdbcType=LONGVARCHAR}, 
+      #{caclDescription,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricInfoWithBLOBs">
+    insert into eva_metric_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="evaMetricId != null">
+        eva_metric_id,
+      </if>
+      <if test="busniess != null">
+        busniess,
+      </if>
+      <if test="product != null">
+        product,
+      </if>
+      <if test="interfaceEva != null">
+        interface_eva,
+      </if>
+      <if test="module != null">
+        `module`,
+      </if>
+      <if test="evaId != null">
+        eva_id,
+      </if>
+      <if test="evaName != null">
+        eva_name,
+      </if>
+      <if test="metricType != null">
+        metric_type,
+      </if>
+      <if test="priority != null">
+        priority,
+      </if>
+      <if test="category1 != null">
+        category_1,
+      </if>
+      <if test="category2 != null">
+        category_2,
+      </if>
+      <if test="threadhold != null">
+        threadhold,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="pattern != null">
+        pattern,
+      </if>
+      <if test="caclDescription != null">
+        cacl_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="evaMetricId != null">
+        #{evaMetricId,jdbcType=BIGINT},
+      </if>
+      <if test="busniess != null">
+        #{busniess,jdbcType=VARCHAR},
+      </if>
+      <if test="product != null">
+        #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceEva != null">
+        #{interfaceEva,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null">
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="evaId != null">
+        #{evaId,jdbcType=VARCHAR},
+      </if>
+      <if test="evaName != null">
+        #{evaName,jdbcType=VARCHAR},
+      </if>
+      <if test="metricType != null">
+        #{metricType,jdbcType=INTEGER},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="category1 != null">
+        #{category1,jdbcType=VARCHAR},
+      </if>
+      <if test="category2 != null">
+        #{category2,jdbcType=VARCHAR},
+      </if>
+      <if test="threadhold != null">
+        #{threadhold,jdbcType=DOUBLE},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pattern != null">
+        #{pattern,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="caclDescription != null">
+        #{caclDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricInfoExample" resultType="java.lang.Long">
+    select count(*) from eva_metric_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update eva_metric_info
+    <set>
+      <if test="record.evaMetricId != null">
+        eva_metric_id = #{record.evaMetricId,jdbcType=BIGINT},
+      </if>
+      <if test="record.busniess != null">
+        busniess = #{record.busniess,jdbcType=VARCHAR},
+      </if>
+      <if test="record.product != null">
+        product = #{record.product,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interfaceEva != null">
+        interface_eva = #{record.interfaceEva,jdbcType=VARCHAR},
+      </if>
+      <if test="record.module != null">
+        `module` = #{record.module,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evaId != null">
+        eva_id = #{record.evaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evaName != null">
+        eva_name = #{record.evaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.metricType != null">
+        metric_type = #{record.metricType,jdbcType=INTEGER},
+      </if>
+      <if test="record.priority != null">
+        priority = #{record.priority,jdbcType=INTEGER},
+      </if>
+      <if test="record.category1 != null">
+        category_1 = #{record.category1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category2 != null">
+        category_2 = #{record.category2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.threadhold != null">
+        threadhold = #{record.threadhold,jdbcType=DOUBLE},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.pattern != null">
+        pattern = #{record.pattern,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.caclDescription != null">
+        cacl_description = #{record.caclDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update eva_metric_info
+    set eva_metric_id = #{record.evaMetricId,jdbcType=BIGINT},
+      busniess = #{record.busniess,jdbcType=VARCHAR},
+      product = #{record.product,jdbcType=VARCHAR},
+      interface_eva = #{record.interfaceEva,jdbcType=VARCHAR},
+      `module` = #{record.module,jdbcType=VARCHAR},
+      eva_id = #{record.evaId,jdbcType=VARCHAR},
+      eva_name = #{record.evaName,jdbcType=VARCHAR},
+      metric_type = #{record.metricType,jdbcType=INTEGER},
+      priority = #{record.priority,jdbcType=INTEGER},
+      category_1 = #{record.category1,jdbcType=VARCHAR},
+      category_2 = #{record.category2,jdbcType=VARCHAR},
+      threadhold = #{record.threadhold,jdbcType=DOUBLE},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      description = #{record.description,jdbcType=LONGVARCHAR},
+      pattern = #{record.pattern,jdbcType=LONGVARCHAR},
+      cacl_description = #{record.caclDescription,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update eva_metric_info
+    set eva_metric_id = #{record.evaMetricId,jdbcType=BIGINT},
+      busniess = #{record.busniess,jdbcType=VARCHAR},
+      product = #{record.product,jdbcType=VARCHAR},
+      interface_eva = #{record.interfaceEva,jdbcType=VARCHAR},
+      `module` = #{record.module,jdbcType=VARCHAR},
+      eva_id = #{record.evaId,jdbcType=VARCHAR},
+      eva_name = #{record.evaName,jdbcType=VARCHAR},
+      metric_type = #{record.metricType,jdbcType=INTEGER},
+      priority = #{record.priority,jdbcType=INTEGER},
+      category_1 = #{record.category1,jdbcType=VARCHAR},
+      category_2 = #{record.category2,jdbcType=VARCHAR},
+      threadhold = #{record.threadhold,jdbcType=DOUBLE},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricInfoWithBLOBs">
+    update eva_metric_info
+    <set>
+      <if test="busniess != null">
+        busniess = #{busniess,jdbcType=VARCHAR},
+      </if>
+      <if test="product != null">
+        product = #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceEva != null">
+        interface_eva = #{interfaceEva,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null">
+        `module` = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="evaId != null">
+        eva_id = #{evaId,jdbcType=VARCHAR},
+      </if>
+      <if test="evaName != null">
+        eva_name = #{evaName,jdbcType=VARCHAR},
+      </if>
+      <if test="metricType != null">
+        metric_type = #{metricType,jdbcType=INTEGER},
+      </if>
+      <if test="priority != null">
+        priority = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="category1 != null">
+        category_1 = #{category1,jdbcType=VARCHAR},
+      </if>
+      <if test="category2 != null">
+        category_2 = #{category2,jdbcType=VARCHAR},
+      </if>
+      <if test="threadhold != null">
+        threadhold = #{threadhold,jdbcType=DOUBLE},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pattern != null">
+        pattern = #{pattern,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="caclDescription != null">
+        cacl_description = #{caclDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where eva_metric_id = #{evaMetricId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricInfoWithBLOBs">
+    update eva_metric_info
+    set busniess = #{busniess,jdbcType=VARCHAR},
+      product = #{product,jdbcType=VARCHAR},
+      interface_eva = #{interfaceEva,jdbcType=VARCHAR},
+      `module` = #{module,jdbcType=VARCHAR},
+      eva_id = #{evaId,jdbcType=VARCHAR},
+      eva_name = #{evaName,jdbcType=VARCHAR},
+      metric_type = #{metricType,jdbcType=INTEGER},
+      priority = #{priority,jdbcType=INTEGER},
+      category_1 = #{category1,jdbcType=VARCHAR},
+      category_2 = #{category2,jdbcType=VARCHAR},
+      threadhold = #{threadhold,jdbcType=DOUBLE},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR},
+      pattern = #{pattern,jdbcType=LONGVARCHAR},
+      cacl_description = #{caclDescription,jdbcType=LONGVARCHAR}
+    where eva_metric_id = #{evaMetricId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricInfo">
+    update eva_metric_info
+    set busniess = #{busniess,jdbcType=VARCHAR},
+      product = #{product,jdbcType=VARCHAR},
+      interface_eva = #{interfaceEva,jdbcType=VARCHAR},
+      `module` = #{module,jdbcType=VARCHAR},
+      eva_id = #{evaId,jdbcType=VARCHAR},
+      eva_name = #{evaName,jdbcType=VARCHAR},
+      metric_type = #{metricType,jdbcType=INTEGER},
+      priority = #{priority,jdbcType=INTEGER},
+      category_1 = #{category1,jdbcType=VARCHAR},
+      category_2 = #{category2,jdbcType=VARCHAR},
+      threadhold = #{threadhold,jdbcType=DOUBLE},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where eva_metric_id = #{evaMetricId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.dmx.evaluationplatform.model.pojo.EvaMetricInfo">
+    <id column="eva_metric_id" jdbcType="BIGINT" property="evaMetricId" />
+    <result column="busniess" jdbcType="VARCHAR" property="busniess" />
+    <result column="product" jdbcType="VARCHAR" property="product" />
+    <result column="interface_eva" jdbcType="VARCHAR" property="interfaceEva" />
+    <result column="module" jdbcType="VARCHAR" property="module" />
+    <result column="eva_id" jdbcType="VARCHAR" property="evaId" />
+    <result column="eva_name" jdbcType="VARCHAR" property="evaName" />
+    <result column="metric_type" jdbcType="INTEGER" property="metricType" />
+    <result column="priority" jdbcType="INTEGER" property="priority" />
+    <result column="category_1" jdbcType="VARCHAR" property="category1" />
+    <result column="category_2" jdbcType="VARCHAR" property="category2" />
+    <result column="threadhold" jdbcType="DOUBLE" property="threadhold" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.dmx.evaluationplatform.model.pojo.EvaMetricInfoWithBLOBs">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="pattern" jdbcType="LONGVARCHAR" property="pattern" />
+    <result column="cacl_description" jdbcType="LONGVARCHAR" property="caclDescription" />
+  </resultMap>
   <sql id="Base_Column_List">
     eva_metric_id, busniess, product, interface_eva, `module`, eva_id, eva_name, metric_type, 
     priority, category_1, category_2, threadhold, create_by, create_time, update_by, 

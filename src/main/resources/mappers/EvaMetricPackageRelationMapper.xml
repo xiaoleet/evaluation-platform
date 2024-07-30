@@ -5,6 +5,147 @@
     <id column="eva_package_id" jdbcType="BIGINT" property="evaPackageId" />
     <id column="eva_metric_id" jdbcType="BIGINT" property="evaMetricId" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    eva_package_id, eva_metric_id
+  </sql>
+  <select id="selectByExample" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricPackageRelationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from eva_metric_package_relation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricPackageRelationKey">
+    delete from eva_metric_package_relation
+    where eva_package_id = #{evaPackageId,jdbcType=BIGINT}
+      and eva_metric_id = #{evaMetricId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricPackageRelationExample">
+    delete from eva_metric_package_relation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricPackageRelationKey">
+    insert into eva_metric_package_relation (eva_package_id, eva_metric_id)
+    values (#{evaPackageId,jdbcType=BIGINT}, #{evaMetricId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricPackageRelationKey">
+    insert into eva_metric_package_relation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="evaPackageId != null">
+        eva_package_id,
+      </if>
+      <if test="evaMetricId != null">
+        eva_metric_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="evaPackageId != null">
+        #{evaPackageId,jdbcType=BIGINT},
+      </if>
+      <if test="evaMetricId != null">
+        #{evaMetricId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricPackageRelationExample" resultType="java.lang.Long">
+    select count(*) from eva_metric_package_relation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update eva_metric_package_relation
+    <set>
+      <if test="record.evaPackageId != null">
+        eva_package_id = #{record.evaPackageId,jdbcType=BIGINT},
+      </if>
+      <if test="record.evaMetricId != null">
+        eva_metric_id = #{record.evaMetricId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update eva_metric_package_relation
+    set eva_package_id = #{record.evaPackageId,jdbcType=BIGINT},
+      eva_metric_id = #{record.evaMetricId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.dmx.evaluationplatform.model.pojo.EvaMetricPackageRelationKey">
+    <id column="eva_package_id" jdbcType="BIGINT" property="evaPackageId" />
+    <id column="eva_metric_id" jdbcType="BIGINT" property="evaMetricId" />
+  </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="com.dmx.evaluationplatform.model.pojo.EvaMetricPackageRelationKey">
     delete from eva_metric_package_relation
     where eva_package_id = #{evaPackageId,jdbcType=BIGINT}

@@ -17,6 +17,355 @@
     <result column="hit_rate" jdbcType="DOUBLE" property="hitRate" />
     <result column="top_k" jdbcType="INTEGER" property="topK" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, scene_task_id, result_id, patrol_version, module_name, cn_module_name, strategy_code, 
+    strategy_name, cn_strategy_name, priority, is_stages, hit_volume, hit_rate, top_k
+  </sql>
+  <select id="selectByExample" parameterType="com.dmx.evaluationplatform.model.pojo.EvaResultExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from eva_result
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from eva_result
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from eva_result
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dmx.evaluationplatform.model.pojo.EvaResultExample">
+    delete from eva_result
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dmx.evaluationplatform.model.pojo.EvaResult">
+    insert into eva_result (id, scene_task_id, result_id, 
+      patrol_version, module_name, cn_module_name, 
+      strategy_code, strategy_name, cn_strategy_name, 
+      priority, is_stages, hit_volume, 
+      hit_rate, top_k)
+    values (#{id,jdbcType=BIGINT}, #{sceneTaskId,jdbcType=BIGINT}, #{resultId,jdbcType=CHAR}, 
+      #{patrolVersion,jdbcType=VARCHAR}, #{moduleName,jdbcType=VARCHAR}, #{cnModuleName,jdbcType=VARCHAR}, 
+      #{strategyCode,jdbcType=VARCHAR}, #{strategyName,jdbcType=VARCHAR}, #{cnStrategyName,jdbcType=VARCHAR}, 
+      #{priority,jdbcType=TINYINT}, #{isStages,jdbcType=BIT}, #{hitVolume,jdbcType=DOUBLE}, 
+      #{hitRate,jdbcType=DOUBLE}, #{topK,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dmx.evaluationplatform.model.pojo.EvaResult">
+    insert into eva_result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sceneTaskId != null">
+        scene_task_id,
+      </if>
+      <if test="resultId != null">
+        result_id,
+      </if>
+      <if test="patrolVersion != null">
+        patrol_version,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="cnModuleName != null">
+        cn_module_name,
+      </if>
+      <if test="strategyCode != null">
+        strategy_code,
+      </if>
+      <if test="strategyName != null">
+        strategy_name,
+      </if>
+      <if test="cnStrategyName != null">
+        cn_strategy_name,
+      </if>
+      <if test="priority != null">
+        priority,
+      </if>
+      <if test="isStages != null">
+        is_stages,
+      </if>
+      <if test="hitVolume != null">
+        hit_volume,
+      </if>
+      <if test="hitRate != null">
+        hit_rate,
+      </if>
+      <if test="topK != null">
+        top_k,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sceneTaskId != null">
+        #{sceneTaskId,jdbcType=BIGINT},
+      </if>
+      <if test="resultId != null">
+        #{resultId,jdbcType=CHAR},
+      </if>
+      <if test="patrolVersion != null">
+        #{patrolVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="cnModuleName != null">
+        #{cnModuleName,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyCode != null">
+        #{strategyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyName != null">
+        #{strategyName,jdbcType=VARCHAR},
+      </if>
+      <if test="cnStrategyName != null">
+        #{cnStrategyName,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=TINYINT},
+      </if>
+      <if test="isStages != null">
+        #{isStages,jdbcType=BIT},
+      </if>
+      <if test="hitVolume != null">
+        #{hitVolume,jdbcType=DOUBLE},
+      </if>
+      <if test="hitRate != null">
+        #{hitRate,jdbcType=DOUBLE},
+      </if>
+      <if test="topK != null">
+        #{topK,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dmx.evaluationplatform.model.pojo.EvaResultExample" resultType="java.lang.Long">
+    select count(*) from eva_result
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update eva_result
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sceneTaskId != null">
+        scene_task_id = #{record.sceneTaskId,jdbcType=BIGINT},
+      </if>
+      <if test="record.resultId != null">
+        result_id = #{record.resultId,jdbcType=CHAR},
+      </if>
+      <if test="record.patrolVersion != null">
+        patrol_version = #{record.patrolVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moduleName != null">
+        module_name = #{record.moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cnModuleName != null">
+        cn_module_name = #{record.cnModuleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.strategyCode != null">
+        strategy_code = #{record.strategyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.strategyName != null">
+        strategy_name = #{record.strategyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cnStrategyName != null">
+        cn_strategy_name = #{record.cnStrategyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priority != null">
+        priority = #{record.priority,jdbcType=TINYINT},
+      </if>
+      <if test="record.isStages != null">
+        is_stages = #{record.isStages,jdbcType=BIT},
+      </if>
+      <if test="record.hitVolume != null">
+        hit_volume = #{record.hitVolume,jdbcType=DOUBLE},
+      </if>
+      <if test="record.hitRate != null">
+        hit_rate = #{record.hitRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.topK != null">
+        top_k = #{record.topK,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update eva_result
+    set id = #{record.id,jdbcType=BIGINT},
+      scene_task_id = #{record.sceneTaskId,jdbcType=BIGINT},
+      result_id = #{record.resultId,jdbcType=CHAR},
+      patrol_version = #{record.patrolVersion,jdbcType=VARCHAR},
+      module_name = #{record.moduleName,jdbcType=VARCHAR},
+      cn_module_name = #{record.cnModuleName,jdbcType=VARCHAR},
+      strategy_code = #{record.strategyCode,jdbcType=VARCHAR},
+      strategy_name = #{record.strategyName,jdbcType=VARCHAR},
+      cn_strategy_name = #{record.cnStrategyName,jdbcType=VARCHAR},
+      priority = #{record.priority,jdbcType=TINYINT},
+      is_stages = #{record.isStages,jdbcType=BIT},
+      hit_volume = #{record.hitVolume,jdbcType=DOUBLE},
+      hit_rate = #{record.hitRate,jdbcType=DOUBLE},
+      top_k = #{record.topK,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dmx.evaluationplatform.model.pojo.EvaResult">
+    update eva_result
+    <set>
+      <if test="sceneTaskId != null">
+        scene_task_id = #{sceneTaskId,jdbcType=BIGINT},
+      </if>
+      <if test="resultId != null">
+        result_id = #{resultId,jdbcType=CHAR},
+      </if>
+      <if test="patrolVersion != null">
+        patrol_version = #{patrolVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="cnModuleName != null">
+        cn_module_name = #{cnModuleName,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyCode != null">
+        strategy_code = #{strategyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyName != null">
+        strategy_name = #{strategyName,jdbcType=VARCHAR},
+      </if>
+      <if test="cnStrategyName != null">
+        cn_strategy_name = #{cnStrategyName,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        priority = #{priority,jdbcType=TINYINT},
+      </if>
+      <if test="isStages != null">
+        is_stages = #{isStages,jdbcType=BIT},
+      </if>
+      <if test="hitVolume != null">
+        hit_volume = #{hitVolume,jdbcType=DOUBLE},
+      </if>
+      <if test="hitRate != null">
+        hit_rate = #{hitRate,jdbcType=DOUBLE},
+      </if>
+      <if test="topK != null">
+        top_k = #{topK,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dmx.evaluationplatform.model.pojo.EvaResult">
+    update eva_result
+    set scene_task_id = #{sceneTaskId,jdbcType=BIGINT},
+      result_id = #{resultId,jdbcType=CHAR},
+      patrol_version = #{patrolVersion,jdbcType=VARCHAR},
+      module_name = #{moduleName,jdbcType=VARCHAR},
+      cn_module_name = #{cnModuleName,jdbcType=VARCHAR},
+      strategy_code = #{strategyCode,jdbcType=VARCHAR},
+      strategy_name = #{strategyName,jdbcType=VARCHAR},
+      cn_strategy_name = #{cnStrategyName,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=TINYINT},
+      is_stages = #{isStages,jdbcType=BIT},
+      hit_volume = #{hitVolume,jdbcType=DOUBLE},
+      hit_rate = #{hitRate,jdbcType=DOUBLE},
+      top_k = #{topK,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.dmx.evaluationplatform.model.pojo.EvaResult">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="scene_task_id" jdbcType="BIGINT" property="sceneTaskId" />
+    <result column="result_id" jdbcType="CHAR" property="resultId" />
+    <result column="patrol_version" jdbcType="VARCHAR" property="patrolVersion" />
+    <result column="module_name" jdbcType="VARCHAR" property="moduleName" />
+    <result column="cn_module_name" jdbcType="VARCHAR" property="cnModuleName" />
+    <result column="strategy_code" jdbcType="VARCHAR" property="strategyCode" />
+    <result column="strategy_name" jdbcType="VARCHAR" property="strategyName" />
+    <result column="cn_strategy_name" jdbcType="VARCHAR" property="cnStrategyName" />
+    <result column="priority" jdbcType="TINYINT" property="priority" />
+    <result column="is_stages" jdbcType="BIT" property="isStages" />
+    <result column="hit_volume" jdbcType="DOUBLE" property="hitVolume" />
+    <result column="hit_rate" jdbcType="DOUBLE" property="hitRate" />
+    <result column="top_k" jdbcType="INTEGER" property="topK" />
+  </resultMap>
   <sql id="Base_Column_List">
     id, scene_task_id, result_id, patrol_version, module_name, cn_module_name, strategy_code, 
     strategy_name, cn_strategy_name, priority, is_stages, hit_volume, hit_rate, top_k
